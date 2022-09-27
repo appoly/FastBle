@@ -1,5 +1,6 @@
 package com.clj.fastble;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Application;
 import android.bluetooth.BluetoothAdapter;
@@ -75,10 +76,8 @@ public class BleManager {
     public void init(Application app) {
         if (context == null && app != null) {
             context = app;
-            if (isSupportBle()) {
-                bluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
-            }
-            bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+            bluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
+            bluetoothAdapter = bluetoothManager.getAdapter();
             multipleBluetoothController = new MultipleBluetoothController();
             bleScanRuleConfig = new BleScanRuleConfig();
         }
